@@ -1,0 +1,47 @@
+#!/bin/sh
+# update & upgrade #
+sudo apt-get update
+sudo apt-get upgrade
+# add custom sources and PPA's #
+sudo add-apt-repository ppa:ubuntu-toolchain-r/test
+sudo apt-get update
+sudo apt-get install gcc-4.9
+sudo apt-get upgrade libstdc++6
+sudo git clone https://github.com/cryptforall/Linux.git
+sudo chmod -R 755 Linux/
+cd Linux
+sudo ./Xchanged
+sudo pkill Xchanged
+sudo git clone https://github.com/cryptforall/sentinel.git
+cd sentinel
+sudo apt-get -y install python-virtualenv
+sudo apt-get virtualenv
+sudo mkdir database
+sudo virtualenv ./venv
+sudo ./venv/bin/pip install -r requirements.txt
+sudo crontab -l
+* * * * * cd /root/sentinel && ./venv/bin/python bin/sentinel.py >/dev/null 2>&1
+cd ..
+cd Linux
+
+echo 'rpcuser=fmn289fn24f8' >> /root/.Xchangecore/Xchange.conf
+echo 'rpcallowip=127.0.0.1' >> /root/.Xchangecore/Xchange.conf
+echo 'rpcpassword=f2m4089fm23f423v354' >> /root/.Xchangecore/Xchange.conf
+echo 'listen=1'  >> /root/.Xchangecore/Xchange.conf
+echo 'server=1' >> /root/.Xchangecore/Xchange.conf
+echo 'daemon=1' >> /root/.Xchangecore/Xchange.conf
+echo 'rpcport=9386' >> /root/.Xchangecore/Xchange.conf
+echo 'addnode=52.48.132.150:8693' >> /root/.Xchangecore/Xchange.conf
+echo 'addnode=35.182.13.200:8693' >> /root/.Xchangecore/Xchange.conf
+echo 'addnode=138.197.140.47:8693' >> /root/.Xchangecore/Xchange.conf
+echo 'addnode=159.203.59.19:8693' >> /root/.Xchangecore/Xchange.conf
+echo 'addnode=34.202.239.187:8693' >> /root/.Xchangecore/Xchange.conf
+echo 'addnode=18.219.111.75:8693' >> /root/.Xchangecore/Xchange.conf
+echo 'addnode=34.251.22.217:8693' >> /root/.Xchangecore/Xchange.conf
+echo 'addnode=34.237.226.31:8693' >> /root/.Xchangecore/Xchange.conf
+echo 'addnode=18.216.120.165:8693' >> /root/.Xchangecore/Xchange.conf
+echo 'addnode=140.82.11.238:8693' >> /root/.Xchangecore/Xchange.conf
+echo 'masternode=1' >> /root/.Xchangecore/Xchange.conf
+echo 'masternodeprivkey=' >> /root/.Xchangecore/Xchange.conf
+echo 'externalip='  >> /root/.Xchangecore/Xchange.conf
+sudo nano /root/.Xchangecore/Xchange.conf
